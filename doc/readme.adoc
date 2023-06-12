@@ -1,0 +1,22 @@
+# SCR4 PV-Project, Jack Heseltine
+
+### Test-Login (Sachbearbeiter)
+
+#### user:
+#### password:
+
+## Idea/Project Description and Architecture
+
+### Idea
+
+The core architectural idea is a no-credentials log in for the application part, so it is accessible, and a protected area for Sachbearbeiter. The "Sachbearbeiter" (admin) can log in with their credentials and have access to the protected area. The admin can then create, read, update and delete data from the database. 
+
+The main application-UI is the form for submission, for admins it is a simple UI allowing status updates and data manipulation (accepted or rejected, optionally notes).
+
+### Architecture
+
+## DB-Structure (UML)
+
+## DB-Structure (SQL)
+
+## Test Cases
