@@ -5,7 +5,7 @@
 <!--display info-->
 <div class="col-sm-12" style="margin-top: 20px;">
     <button class="btn btn-primary btn-xs" type="button">
-      <span class="badge"><?php echo PVAssistance\Util::escape($cartSize); ?></span> PV-Assistance applications
+      <span class="badge"><?php echo PVAssistance\Util::escape($applicationCount); ?></span> PV-Assistance applications
     </button>
     <p style="margin-top: 10px; text-align: center;">&copy; SCR4 <?php echo date('Y'); ?></p>
 </div><!--/display info-->

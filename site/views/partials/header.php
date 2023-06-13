@@ -2,14 +2,18 @@
 
 use PVAssistance\Util;
 use PVAssistance\AuthenticationManager;
-use PVAssistance\ShoppingCart;
+use PVAssistance\Controller;
+
+use \Data\DataManager;
 
 $user = AuthenticationManager::getAuthenticatedUser();
-$cartSize = ShoppingCart::size();
+
 if (isset($_GET["errors"])) {
     $errors = unserialize(urldecode($_GET["errors"]));
 }
-// /needed for shopping cart
+
+// for application count
+$applicationCount = DataManager::getApplicationCount();
 ?>
 
 <!DOCTYPE html>
