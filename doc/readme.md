@@ -123,7 +123,7 @@ UUID and token provide two factors for security. The interface is:
 
 (UUID-link followed correctly:)
 
-...
+![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/247c0d7a-86f2-493c-b293-6f8f0e996ec0)
 
 As specified, token- and UUID distribution are not implemented here. A simple separation of the two factors when sending (sending at different times) provides a good degree of security.
 
