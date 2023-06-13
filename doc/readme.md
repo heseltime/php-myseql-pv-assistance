@@ -46,6 +46,8 @@ Success-Case:
 
 ![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/e9210ab7-dd22-4541-92ca-1a36b6086483)
 
+Everything is also tracked per user and application, especially, including IP address:
+
 
 
 ## DB-Structure (UML)
