@@ -70,7 +70,7 @@ Application display once processed (with result):
 
 For completeness, in progress can also be called and looks like this:
 
-...
+![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/489de95e-168d-4332-85b8-69e56d2e8e39)
 
 ### Security: UUID Mechanism
 
