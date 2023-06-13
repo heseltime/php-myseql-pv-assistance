@@ -286,13 +286,35 @@ class DataManager implements IDataManager {
     $res = self::query($con, "
       SELECT id, userId, address, outputInKWP, constructionDate, PVType, requestDate, IPAddress, token, uuid, status, notes
       FROM application;
-      ", [$categoryId]);
+      ", []);
     while ($a = self::fetchObject($res)) {
       $applications[] = new Application($a->id, self::getUserByUserId($a->userId), $a->address, $a->outputInKWP, new \DateTime($a->constructionDate), $a->PVType, new \DateTime($a->requestDate), $a->IPAddress, $a->token, $a->uuid, $a->status, $a->notes);
     }
     self::close($res);
     self::closeConnection($con);
     return $applications;
+  }
+
+  /**
+   * get number of applications
+   * 
+   * note: see how prepared statements replace "?" with array element values
+   *
+   * @return array of Application-items
+   */
+  public static function getApplicationCount()  : int {
+    $count = 0;
+    $con = self::getConnection();
+    $res = self::query($con, "
+      SELECT COUNT(id) AS count
+      FROM application;
+      ", []);
+    if ($c = self::fetchObject($res)) {
+      $count = $c->count;
+    }
+    self::close($res);
+    self::closeConnection($con);
+    return $count;
   }
 
 }
