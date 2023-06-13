@@ -17,7 +17,7 @@ if (isset($_GET["errors"])) {
 <head>
     <meta charset="utf-8">
 
-    <title>SCM4 Book Shop</title>
+    <title>SCR4 PV-Assistance</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">

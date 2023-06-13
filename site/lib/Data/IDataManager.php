@@ -3,10 +3,7 @@
 namespace Data;
 use PVAssistance\User;
 interface IDataManager {
-    public static function getCategories() : array;
-    public static function getBooksByCategory(int $categoryId) : array;
-    public static function getUserById(int $userId) : ?User;
-    public static function getUserByUserName(string $userName) : ?User;
-    public static function createOrder(int $userId, array $bookIds, string $nameOnCard, string $cardNumber) : int;
-    public static function getBooksForSearchCriteria (string $term) : array;
+    public static function createUser(string $firstName, string $lastName, string $sex, string $dateOfBirth, string $emailAddress, string $phoneNo) : ?User;
+    public static function getUserByUserId(int $userId) : ?User;
+    public static function getUserByEmail(string $emailAddress) : ?User;
 }
