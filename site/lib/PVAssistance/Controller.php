@@ -35,7 +35,7 @@ class Controller {
   public const USER_NAME = 'userName';
   public const USER_PASSWORD = 'password';
   public const APPLY = 'newApplication';
-  public const ACTION_CHECK_REQUEST_STATUS = 'getFunding';
+  public const CHECK_STATUS = 'checkStatus';
   public const ACTION_HANDLE_REQUEST = 'handleRequest';
 
   private static $instance = false;
@@ -66,8 +66,8 @@ class Controller {
     return $sysTime;
   }
 
-  private function generateURL(string $countingNumber) : string {
-    return 'showRequest' . urlencode(sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+  private function generateUUID(string $id) : string {
+    return urlencode(sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
 
       // 32 bits for "time_low"
       mt_rand(0, 0xffff), mt_rand(0, 0xffff),
@@ -86,7 +86,7 @@ class Controller {
 
       // 48 bits for "node"
       mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
-    ) . $countingNumber);
+    ));
   }
 
   private function generateToken() : string{
@@ -192,17 +192,51 @@ class Controller {
           $user = \Data\DataManager::createUser($safeFirstName, $safeLasttName, $sex, $dateOfBirth, $email, $telefon);
         }
 
-        $url = $this->generateURL($id); // TODO
+        $uuid = $this->generateUUID($id); // TODO
 
         $token = $this->generateToken();
 
         $application = \Data\DataManager::createApplication($id, $user, $address, $kwP, strtotime($constructionDate), 
-          $pvType, strtotime($requestDate), $ip_adresse, $token, $url, Status::IN_PROGRESS, '');
+          $pvType, strtotime($requestDate), $ip_adresse, $token, $uuid, Status::IN_PROGRESS, '');
 
         // TODO: log activity
 
         Util::redirect('index.php?view=success&id=' . rawurlencode($id));
 
+        break;
+
+      case self::CHECK_STATUS :
+        $errors = [];
+
+        $url = $_SERVER['REQUEST_URI'];
+
+        $queryString = parse_url($url, PHP_URL_QUERY);
+
+        $_SESSION['form_data'] = $_POST;
+
+        $parts = explode('checkStatus', $queryString);
+
+        $requestUrl = isset($parts[1]) ? $parts[1] : '';
+        $uuid = $_POST['uuid'];
+
+        $token = $_POST['token'];
+
+        $application = \Data\DataManager::getApplicationByUUIDAndToken($uuid, $token);
+
+        $format = 'Y-m-d H:i:s';
+        $accessDate = date($format);
+
+        if($application == null) {
+          $errors[] = "Application not found, please check your ID and token";
+          //\Data\DataManager::logActivity($_SERVER['REMOTE_ADDR'], Action::INSERTED_WRONG_TOKEN, null, null, $accessDate);
+        } else {
+          $_SESSION['application'] = $application;
+          //\Data\DataManager::logActivity($_SERVER['REMOTE_ADDR'], Action::CHECKED_REQUEST, $fundingRequest->getUser()->getId(), null, $accessDate);
+        }
+
+        $_SESSION['errors'] = $errors;
+
+        Util::redirect('index.php?view=checkStatus' . $requestUrl);
         break;
 
       case self::ACTION_ADD :

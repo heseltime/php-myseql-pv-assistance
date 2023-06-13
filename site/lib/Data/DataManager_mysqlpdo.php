@@ -369,6 +369,29 @@ class DataManager implements IDataManager {
   }
 
   /**
+   * get the User by userId
+   * if userId is known, this is the best way to get the user
+   * 
+   * @param string $email  email address of that user - must be exact match
+   * @return User | false
+   */
+  public static function getUserByUserId($userId) : ?User {
+    $user = null;
+    $con = self::getConnection();
+    $res = self::query($con, "
+      SELECT userId, firstName, lastName, sex, dateOfBirth, emailAddress, phoneNo
+      FROM user
+      WHERE userId = ?;
+      ", [$userId]);
+    if ($u = self::fetchObject($res)) {
+      $user = new User($u->userId, $u->firstName, $u->lastName, $u->sex, $u->dateOfBirth, $u->emailAddress, $u->phoneNo);
+    }
+    self::close($res);
+    self::closeConnection($con);
+    return $user;
+  }
+
+  /**
    * create new user from required inputs, using email as unique identifier
    * 
    * @param string $firstName 
@@ -411,19 +434,42 @@ class DataManager implements IDataManager {
    * @param DateTime $requestDate
    * @param string $IPAddress
    * @param string $token
-   * @param string $url
+   * @param string $uuid
    * @param string $status
    * @param string $notes
    * 
    * @return Application
    */
   public static function createApplication($id, $user, $address, $outputInKWP, $constructionDate, $PVType, 
-  $requestDate, $IPAddress, $token, $url, $status, $notes) : Application {
+  $requestDate, $IPAddress, $token, $uuid, $status, $notes) : Application {
     $con = self::getConnection();
     $res = self::query($con, "
-      INSERT INTO application (id, userId, address, outputInKWP, constructionDate, PVType, requestDate, IPAddress, token, url, status, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
-      ", [$id, $user->getId(), $address, $outputInKWP, date('Y-m-d', $constructionDate), $PVType, date('Y-m-d H:i:s', $requestDate), $IPAddress, $token, $url, $status, $notes]);
-    $application = new Application($id, $user, $address, $outputInKWP, new \DateTime(date('Y-m-d', $constructionDate)), $PVType, new \DateTime(date('Y-m-d', $requestDate)), $IPAddress, $token, $url, $status, $notes);
+      INSERT INTO application (id, userId, address, outputInKWP, constructionDate, PVType, requestDate, IPAddress, token, uuid, status, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      ", [$id, $user->getId(), $address, $outputInKWP, date('Y-m-d', $constructionDate), $PVType, date('Y-m-d H:i:s', $requestDate), $IPAddress, $token, $uuid, $status, $notes]);
+    $application = new Application($id, $user, $address, $outputInKWP, new \DateTime(date('Y-m-d', $constructionDate)), $PVType, new \DateTime(date('Y-m-d', $requestDate)), $IPAddress, $token, $uuid, $status, $notes);
+    self::close($res);
+    self::closeConnection($con);
+    return $application;
+  }
+
+  /**
+   * get application, checking uuid/token combination is valid
+   * 
+   * @param string $uuid
+   * @param string $token
+   * @return Application | false
+   */
+  public static function getApplicationByUUIDAndToken($uuid, $token) : ?Application {
+    $application = null;
+    $con = self::getConnection();
+    $res = self::query($con, "
+      SELECT id, userId, address, outputInKWP, constructionDate, PVType, requestDate, IPAddress, token, uuid, status, notes
+      FROM application
+      WHERE uuid = ? AND token = ?;
+      ", [$uuid, $token]);
+    if ($a = self::fetchObject($res)) {
+      $application = new Application($a->id, self::getUserByUserId($a->userId), $a->address, $a->outputInKWP, new \DateTime($a->constructionDate), $a->PVType, new \DateTime($a->requestDate), $a->IPAddress, $a->token, $a->uuid, $a->status, $a->notes);
+    }
     self::close($res);
     self::closeConnection($con);
     return $application;

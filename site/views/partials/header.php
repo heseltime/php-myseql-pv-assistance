@@ -46,7 +46,7 @@ if (isset($_GET["errors"])) {
             <ul class="nav navbar-nav">
                 <li  <?php if ($view === 'welcome') { ?>class="active"<?php } ?>><a href="index.php">Home</a></li>
                 <li <?php if ($view === 'apply') { ?>class="active"<?php } ?>><a href="index.php?view=apply">Apply Now</a></li>
-                <li  <?php if ($view === 'admin') { ?>class="active"<?php } ?>><a href="index.php?view=review">Review Existing Application</a></li>
+                <li  <?php if ($view === 'checkStatus') { ?>class="active"<?php } ?>><a href="index.php?view=checkStatus">Check Status for Existing Application</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right login">
                 <li class="dropdown">

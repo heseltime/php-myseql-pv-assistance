@@ -20,7 +20,7 @@ CREATE TABLE application (
     requestDate DATETIME,
     IPAddress VARCHAR(32),
 	token VARCHAR(20),
-	url VARCHAR(100),
+	uuid VARCHAR(100),
 	status ENUM('In Progress', 'Approved', 'Rejected'),
 	notes VARCHAR(200),
 	KEY userId (userId)

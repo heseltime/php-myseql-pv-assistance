@@ -15,7 +15,7 @@ class Application extends Entity {
   private DateTime $requestDate;
   private string $ipAddress;
   private string $token;
-  private string $url;
+  private string $uuid;
   private string $status;
   private string $notes;
  
@@ -28,7 +28,7 @@ class Application extends Entity {
                               DateTime $requestDate,
                               string $ipAddress,
                               string $token,
-                              string $url,
+                              string $uuid,
                               string $status,
                               string $notes) {
     $this->id = $id;
@@ -42,7 +42,7 @@ class Application extends Entity {
     $this->token = $token;
     $this->url = $url;
     $this->status = $status;
-    $this->reason = $notes;
+    $this->notes = $notes;
   }
 
   public function getCountingNumber(): string {
@@ -85,16 +85,16 @@ public function getURL(): string {
     return $this->url;
 }
 
-public function setAcceptedStatus(AcceptedStatus $status) {
+public function setStatus(AcceptedStatus $status) {
   $this->accepted = $status;
 }
 
-public function getAcceptedStatus(): Status {
-  return $this->accepted;
+public function getStatus(): string {
+  return $this->status;
 }
 
-public function getReason(): string {
-  return $this->reason;
+public function getNotes(): string {
+  return $this->notes;
 }
 
 }
