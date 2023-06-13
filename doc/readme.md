@@ -66,7 +66,7 @@ Application display once processed (with result):
 
 (Rejected case:)
 
-...
+![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/71f8dcaf-9e9b-42f5-968e-acedb73c0cd8)
 
 For completeness, in progress can also be called and looks like this:
 
