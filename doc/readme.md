@@ -62,7 +62,7 @@ Application display once processed (with result):
 
 (Approved case:)
 
-...
+![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/e2c71e0f-8e70-485c-842b-13d787ed40de)
 
 (Rejected case:)
 
