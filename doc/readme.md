@@ -119,7 +119,7 @@ UUID and token provide two factors for security. The interface is:
 
 (No-UUID case:)
 
-...
+![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/ada433d4-0ea5-48ae-9bf0-5ad2365c2bdd)
 
 (UUID-link followed correctly:)
 
