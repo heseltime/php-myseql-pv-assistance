@@ -1,0 +1,46 @@
+body {
+  padding-top: 50px;
+}
+
+.container {
+  padding-top: 80px;
+}
+
+.centered {
+  text-align: center;
+}
+
+.navbar .login {
+  float: right;
+}
+.navbar .login form {
+  margin: 0; padding: 0;
+}
+
+.footer {
+
+  margin-top: 30px;
+}
+
+.add-remove input {
+    width: 30px;
+    text-algin: center;
+}
+
+.masthead {
+  height: 100vh;
+  min-height: 500px;
+  background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.footer p {
+  color: #eee;
+  font-weight: bolder;
+}
+
+.page-header > h2 {
+  color: #eee;
+}
