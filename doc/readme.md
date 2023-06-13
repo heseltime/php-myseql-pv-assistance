@@ -32,7 +32,7 @@ The core architectural idea is a no-credentials log in for the application part,
 
 ![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/c25edf32-95a6-47ed-8325-3312e5df2b67)
 
-The main application-UI is the form for submission, for admins it is a simple UI allowing status updates and data manipulation (accepted or rejected, optionally notes).
+The main application-UI is the form for submission, for admins it is a simple UI allowing status updates and data manipulation (accepted or rejected, optionally notes). There is also a token-protected area for getting the latest version of the application, for the applicant.
 
 ### Architecture
 
@@ -50,8 +50,34 @@ Everything is also tracked per user and application, especially, including IP ad
 
 ![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/7a66cbd6-9f87-44c0-8f34-7299339f0c14)
 
+In this implementation I provide token and URL once the application is submitted, so it can be displayed even when "in progress":
+
+...
+
+This way the user has their details from the beginning, which can then also be sent a second time once the application is actually reviewed.
+
+Admin log-in:
+
+...
+
+Admin processing:
+
+...
+
+Application display once processed (with result):
+
+(Approved case:)
+
+...
+
+(Rejected case:)
+
+...
+
 ## DB-Structure (UML)
 
 ## DB-Structure (SQL)
 
 ## Test Cases
+
+Some major tests were already covered in the 
