@@ -10,8 +10,8 @@
             </a>
         </div>
         <div class="col-md-12">
-            <a href="index.php?view=login">
-                <button class="btn btn-secondary btn-lg btn-block">Go to Admin-Interface instead</button>
+            <a href="index.php?view=review">
+                <button class="btn btn-secondary btn-lg btn-block">Review an existing application</button>
             </a>
         </div>
     </div>

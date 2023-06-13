@@ -46,18 +46,18 @@ if (isset($_GET["errors"])) {
             <ul class="nav navbar-nav">
                 <li  <?php if ($view === 'welcome') { ?>class="active"<?php } ?>><a href="index.php">Home</a></li>
                 <li <?php if ($view === 'apply') { ?>class="active"<?php } ?>><a href="index.php?view=apply">Apply Now</a></li>
-                <li  <?php if ($view === 'admin') { ?>class="active"<?php } ?>><a href="index.php?view=login">Admin-Interface</a></li>
+                <li  <?php if ($view === 'admin') { ?>class="active"<?php } ?>><a href="index.php?view=review">Review Existing Application</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right login">
                 <li class="dropdown">
                     <?php if ($user == null): ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Not logged in as admin
+                            Admin
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="index.php?view=login">Login now</a>
+                                <a href="index.php?view=login">Login as admin now</a>
                             </li>
                         </ul>
                     <?php else: ?>

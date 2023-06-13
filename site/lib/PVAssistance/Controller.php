@@ -201,7 +201,7 @@ class Controller {
 
         // TODO: log activity
 
-        Util::redirect('index.php?view=success&id=' . rawurlencode($id) . '&token=' . rawurlencode($token));
+        Util::redirect('index.php?view=success&id=' . rawurlencode($id));
 
         break;
 

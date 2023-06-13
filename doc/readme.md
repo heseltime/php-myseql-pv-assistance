@@ -50,12 +50,6 @@ Everything is also tracked per user and application, especially, including IP ad
 
 ![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/7a66cbd6-9f87-44c0-8f34-7299339f0c14)
 
-In this implementation I provide token and URL once the application is submitted, so it can be displayed even when "in progress":
-
-...
-
-This way the user has their details from the beginning, which can then also be sent a second time once the application is actually reviewed.
-
 Admin log-in:
 
 ...
