@@ -23,10 +23,10 @@ class AuthenticationManager  {
    * @param string $password   password in clear text
    * @return boolean
    */
-  public static function authenticate(string $userName, string $password) : bool {
-    $user = \Data\DataManager::getUserByUserName($userName);
-    if ($user != null && $user->getPasswordHash() == hash('sha1', $userName . '|' . $password)) {
-      $_SESSION['user'] = $user->getId();
+  public static function authenticate(string $name, string $password) : bool {
+    $admin = \Data\DataManager::getAdminByName($name);
+    if ($admin != null && $admin->getPassword() == hash('sha1', $name . '|' . $password)) {
+      $_SESSION['admin'] = $admin->getId();
       return true;
     }
     self::signOut();

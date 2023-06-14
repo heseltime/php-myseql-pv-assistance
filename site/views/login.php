@@ -7,20 +7,21 @@ if (AuthenticationManager::isAuthenticated()) {
     Util::redirect("index.php");
 }
 $userName = $_REQUEST[PVAssistance\Controller::USER_NAME] ?? null;
-?>
 
-<?php
 require_once('views/partials/header.php');
+
+require_once('views/partials/errors.php');
+
 ?>
 
 
     <div class="page-header">
-        <h2>Login</h2>
+        <h2>Log In</h2>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            Please fill out the form below:
+            Please log in to process applications.
         </div>
         <div class="panel-body">
 
@@ -28,13 +29,13 @@ require_once('views/partials/header.php');
                 <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Username:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="inputName" name="<?php print PVAssistance\Controller::USER_NAME; ?>" placeholder="try 'scm4'" value="<?php echo htmlentities($userName ?? ''); ?>">
+                        <input type="text" class="form-control" id="inputName" name="<?php print PVAssistance\Controller::USER_NAME; ?>" placeholder="try 'admin'" value="<?php echo htmlentities($userName ?? ''); ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword" class="col-sm-2 control-label">Password</label>
                     <div class="col-sm-6">
-                        <input type="password" class="form-control" id="inputPassword" name="<?php print PVAssistance\Controller::USER_PASSWORD; ?>" placeholder="try 'scm4'">
+                        <input type="password" class="form-control" id="inputPassword" name="<?php print PVAssistance\Controller::USER_PASSWORD; ?>" placeholder="try 'admin'">
                     </div>
                 </div>
                 <div class="form-group">

@@ -6,8 +6,8 @@ Based on php-mysql-bookstore-dev-8 sample project, FHOOe/Hagenberg SCR4 2023.
 
 ### Test-Login (admin)
 
-#### user:
-#### password:
+#### user: 'admin'
+#### password: 'admin'
 
 ### DDEV Instructions
 
@@ -53,6 +53,8 @@ Everything is also tracked per user and application, especially, including IP ad
 Admin log-in:
 
 ...
+
+Header partial and login actions in the controloer/DataManager implement the login functionality for admins. In the logged in state admins have an additional header link that allows them to access the forms for processing. (Admin sign up is out of scope, see existing admin database entries.)
 
 Admin processing:
 
@@ -128,6 +130,10 @@ UUID and token provide two factors for security. The interface is:
 As specified, token- and UUID distribution are not implemented here. A simple separation of the two factors when sending (sending at different times) provides a good degree of security.
 
 ## DB-Structure (UML)
+
+The basic structure reflected in the classes for this project is User for applicants, Admin for application reviewers, Application for applications, Log for logs.
+
+...
 
 ## DB-Structure (SQL)
 

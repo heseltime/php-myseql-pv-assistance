@@ -4,6 +4,7 @@ namespace Data;
 
 use PVAssistance\User;
 use PVAssistance\Application;
+use PVAssistance\Admin;
 
 enum Status {
   const IN_PROGRESS = "In Progress";
@@ -315,6 +316,28 @@ class DataManager implements IDataManager {
     self::close($res);
     self::closeConnection($con);
     return $count;
+  }
+
+  /**
+   * get the admin by admin name
+   * 
+   * @param string $adminName 
+   * @return Admin | false
+   */
+  public static function getAdminByName($adminName) : ?Admin {
+    $admin = null;
+    $con = self::getConnection();
+    $res = self::query($con, "
+      SELECT id, name, password
+      FROM admin
+      WHERE name = ?;
+      ", [$adminName]);
+    if ($a = self::fetchObject($res)) {
+      $admin = new Admin($a->id, $a->name, $a->password);
+    }
+    self::close($res);
+    self::closeConnection($con);
+    return $admin;
   }
 
 }

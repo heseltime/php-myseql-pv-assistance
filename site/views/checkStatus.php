@@ -4,14 +4,10 @@ use Data\AcceptedStatus;
 use Data\DataManager;
 use PVAssistance\Util;
 
-$errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
-$form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 $application = isset($_SESSION['application']) ? $_SESSION['application'] : [];
 
 $uuid = isset($_GET['uuid']) ? $_GET['uuid'] : [];
 
-unset($_SESSION['errors']); 
-unset($_SESSION['form_data']); 
 unset($_SESSION['application']);
 
 require_once('views/partials/header.php');

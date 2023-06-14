@@ -4,11 +4,6 @@
 
 use PVAssistance\Util;
 
-$errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
-$form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
-unset($_SESSION['errors']); // only display once
-unset($_SESSION['form_data']); 
-
 ?>
 
 <?php require_once('views/partials/errors.php'); ?>

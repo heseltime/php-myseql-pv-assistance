@@ -7,7 +7,7 @@ CREATE TABLE user (
     dateOfBirth DATE,
     emailAddress VARCHAR(50),
     phoneNo VARCHAR(20)
-) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;;
+  ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;;
 
 CREATE TABLE application (
     id NUMERIC(20) NOT NULL,
@@ -25,3 +25,13 @@ CREATE TABLE application (
 	notes VARCHAR(200),
 	KEY userId (userId)
   ) ENGINE=InnoDB CHARSET=utf8;;
+
+CREATE TABLE admin (
+	id int(11) NOT NULL AUTO_INCREMENT,
+	name VARCHAR(50) NOT NULL,
+	password VARCHAR(50) NOT NULL,
+	PRIMARY KEY (id),
+	UNIQUE KEY name (name)
+  ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;;
+
+INSERT INTO `admin` VALUES (1, 'admin', '68be59da0cf353ae74ee8db8b005454b515e1a22');

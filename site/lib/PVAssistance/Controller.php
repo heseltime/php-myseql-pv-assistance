@@ -239,35 +239,16 @@ class Controller {
         Util::redirect('index.php?view=checkStatus' . $requestUrl);
         break;
 
-      case self::ACTION_ADD :
-        ShoppingCart::add((int) $_REQUEST['bookId']);
-        Util::redirect();
-        break;
-
-      case self::ACTION_REMOVE :
-        ShoppingCart::remove((int) $_REQUEST['bookId']);
-        Util::redirect();
-        break;
-
-      case self::ACTION_ORDER :
-        $user = AuthenticationManager::getAuthenticatedUser();
-
-        if ($user == null) {
-					$this->forwardRequest(['Not logged in.']);
-					break;
-        }
-        
-				if (!$this->processCheckout($_POST[self::CC_NAME], $_POST[self::CC_NUMBER])) {
-					$this->forwardRequest(['Checkout failed.']);
-				}
-				break;
-
       case self::ACTION_LOGIN :
-        //try to authenticate the given user
+        $errors = [];
         if (!AuthenticationManager::authenticate($_REQUEST[self::USER_NAME], $_REQUEST[self::USER_PASSWORD])) {
-          $this->forwardRequest(array('Invalid user name or password.'));
+          //$this->forwardRequest(array('Invalid user name or password.'));
+          $errors[] = "Invalid user name or password.";
+          $_SESSION['errors'] = $errors;
+          $_SESSION['form_data'] = $_POST;
+          // log
         }
-        Util::redirect();
+        Util::redirect('index.php?view=login' . '');
         break;
 
       case self::ACTION_LOGOUT :
