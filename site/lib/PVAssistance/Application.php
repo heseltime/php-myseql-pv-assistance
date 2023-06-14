@@ -40,7 +40,7 @@ class Application extends Entity {
     $this->requestDate = $requestDate;
     $this->ipAddress = $ipAddress;
     $this->token = $token;
-    $this->url = $url;
+    $this->uuid = $uuid;
     $this->status = $status;
     $this->notes = $notes;
   }
@@ -81,8 +81,8 @@ public function getToken(): string {
     return $this->token;
 }
 
-public function getURL(): string {
-    return $this->url;
+public function getUUID(): string {
+    return $this->uuid;
 }
 
 public function setStatus(AcceptedStatus $status) {

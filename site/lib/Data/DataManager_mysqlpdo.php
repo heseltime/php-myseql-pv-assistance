@@ -289,7 +289,7 @@ class DataManager implements IDataManager {
       FROM application;
       ", []);
     while ($a = self::fetchObject($res)) {
-      $applications[] = new Application($a->id, self::getUserByUserId($a->userId), $a->address, $a->outputInKWP, new \DateTime($a->constructionDate), $a->PVType, new \DateTime($a->requestDate), $a->IPAddress, $a->token, $a->uuid, $a->status, $a->notes);
+      $applications[] = new Application($a->id, self::getUserByUserId($a->userId), $a->address, $a->outputInKWP, new \DateTime($a->constructionDate), $a->PVType, new \DateTime($a->requestDate), $a->IPAddress, $a->token, $a->uuid, $a->status, $a->notes == null ? "" : $a->notes);
     }
     self::close($res);
     self::closeConnection($con);
