@@ -2,6 +2,7 @@
 
 namespace PVAssistance;
 
+// term "user" used on this level, but "admin" also used elsewhere
 
 SessionContext::create();
 /**
@@ -26,7 +27,7 @@ class AuthenticationManager  {
   public static function authenticate(string $name, string $password) : bool {
     $admin = \Data\DataManager::getAdminByName($name);
     if ($admin != null && $admin->getPassword() == hash('sha1', $name . '|' . $password)) {
-      $_SESSION['admin'] = $admin->getId();
+      $_SESSION['user'] = $admin->getId(); // "user" used for admin from this point on
       return true;
     }
     self::signOut();
@@ -56,8 +57,8 @@ class AuthenticationManager  {
    *
    * @return Bookshop\User
    */
-  public static function getAuthenticatedUser() : ?User  {
-    return self::isAuthenticated() ? \Data\DataManager::getUserById($_SESSION['user']) : null;
+  public static function getAuthenticatedUser() : ?Admin  {
+    return self::isAuthenticated() ? \Data\DataManager::getAdminById($_SESSION['user']) : null;
   }
 
 }

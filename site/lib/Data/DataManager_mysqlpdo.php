@@ -340,4 +340,26 @@ class DataManager implements IDataManager {
     return $admin;
   }
 
+  /**
+   * get the admin by id 
+   * 
+   * @param int $id 
+   * @return Admin | false
+   */
+  public static function getAdminById($id) : ?Admin {
+    $admin = null;
+    $con = self::getConnection();
+    $res = self::query($con, "
+      SELECT id, name, password
+      FROM admin
+      WHERE id = ?;
+      ", [$id]);
+    if ($a = self::fetchObject($res)) {
+      $admin = new Admin($a->id, $a->name, $a->password);
+    }
+    self::close($res);
+    self::closeConnection($con);
+    return $admin;
+  }
+
 }

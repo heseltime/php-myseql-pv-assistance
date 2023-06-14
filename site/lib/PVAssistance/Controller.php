@@ -248,7 +248,8 @@ class Controller {
           $_SESSION['form_data'] = $_POST;
           // log
         }
-        Util::redirect('index.php?view=login' . '');
+        // authenticated
+        Util::redirect('index.php?view=list' . '');
         break;
 
       case self::ACTION_LOGOUT :

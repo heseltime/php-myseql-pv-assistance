@@ -51,6 +51,9 @@ $applicationCount = DataManager::getApplicationCount();
                 <li  <?php if ($view === 'welcome') { ?>class="active"<?php } ?>><a href="index.php">Home</a></li>
                 <li <?php if ($view === 'apply') { ?>class="active"<?php } ?>><a href="index.php?view=apply">Apply Now</a></li>
                 <li  <?php if ($view === 'checkStatus') { ?>class="active"<?php } ?>><a href="index.php?view=checkStatus">Check Status for Existing Application</a></li>
+                <?php if ($user != null): ?>
+                    <li  <?php if ($view === 'list') { ?>class="active"<?php } ?>><a href="index.php?view=list">Review Applications as Admin</a></li>
+                <?php endif; ?>
             </ul>
             <ul class="nav navbar-nav navbar-right login">
                 <li class="dropdown">
@@ -66,7 +69,7 @@ $applicationCount = DataManager::getApplicationCount();
                         </ul>
                     <?php else: ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        Logged in as  <span class="badge"><?php echo Util::escape($user->getUserName()); ?></span>
+                        Logged in as  <span class="badge"><?php echo Util::escape($user->getName()); ?></span>
                         <b class="caret"></b>
                         </a>
                         </a>
