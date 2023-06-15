@@ -128,7 +128,7 @@ class Controller {
       case self::APPLY :
         $constructionDate = $_REQUEST['constructionDate'];
         $requestDate = self::getCurrentTime();
-        $ip_adresse = $_SERVER['REMOTE_ADDR'];
+        $ipAddress = $_SERVER['REMOTE_ADDR'];
         $id = $_REQUEST['id'];
         $address = $_REQUEST['address'];
         $kwP = $_REQUEST['kwP'];
@@ -176,7 +176,7 @@ class Controller {
         }
 
         if(!(preg_match('/^(\+\d{2}\s)?(\d+\s*)*$/', $telefon))) {
-          $errors[] = "Telefonnummer nicht gültig";
+          $errors[] = "Invalid Phone Number";
           $validationError = true;
         }
 
@@ -197,9 +197,9 @@ class Controller {
         $token = $this->generateToken();
 
         $application = \Data\DataManager::createApplication($id, $user, $address, $kwP, strtotime($constructionDate), 
-          $pvType, strtotime($requestDate), $ip_adresse, $token, $uuid, Status::IN_PROGRESS, '');
+          $pvType, strtotime($requestDate), $ipAddress, $token, $uuid, Status::IN_PROGRESS, '');
 
-        // TODO: log activity
+          \Data\DataManager::log($_SERVER['REMOTE_ADDR'], 'new application with uuid ' . $uuid . ' created', $_SESSION['user']);
 
         Util::redirect('index.php?view=success&id=' . rawurlencode($id));
 
@@ -228,10 +228,9 @@ class Controller {
 
         if($application == null) {
           $errors[] = "Application not found, please check your ID and token";
-          //\Data\DataManager::logActivity($_SERVER['REMOTE_ADDR'], Action::INSERTED_WRONG_TOKEN, null, null, $accessDate);
+          \Data\DataManager::log($_SERVER['REMOTE_ADDR'], 'application not found error', $_SESSION['user']);
         } else {
           $_SESSION['application'] = $application;
-          //\Data\DataManager::logActivity($_SERVER['REMOTE_ADDR'], Action::CHECKED_REQUEST, $fundingRequest->getUser()->getId(), null, $accessDate);
         }
 
         $_SESSION['errors'] = $errors;
@@ -249,7 +248,7 @@ class Controller {
 
         $app = \Data\DataManager::processApplication($uuid, $token, $status, $notes);
 
-        // log ...
+        \Data\DataManager::log($_SERVER['REMOTE_ADDR'], 'application with uuid ' . $uuid . 'status changed to ' . $status, $_SESSION['user']);
 
         Util::redirect('index.php?view=list');
         break;
@@ -261,7 +260,7 @@ class Controller {
           $errors[] = "Invalid user name or password.";
           $_SESSION['errors'] = $errors;
           $_SESSION['form_data'] = $_POST;
-          // log
+          \Data\DataManager::log($_SERVER['REMOTE_ADDR'], 'failed login attempt', $_SESSION['user']);
         }
         // authenticated
         Util::redirect('index.php?view=list' . '');

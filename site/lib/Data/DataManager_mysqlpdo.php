@@ -245,7 +245,7 @@ class DataManager implements IDataManager {
     $res = self::query($con, "
       INSERT INTO application (id, userId, address, outputInKWP, constructionDate, PVType, requestDate, IPAddress, token, uuid, status, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
       ", [$id, $user->getId(), $address, $outputInKWP, date('Y-m-d', $constructionDate), $PVType, date('Y-m-d H:i:s', $requestDate), $IPAddress, $token, $uuid, $status, $notes]);
-    $application = new Application($id, $user, $address, $outputInKWP, new \DateTime(date('Y-m-d', $constructionDate)), $PVType, new \DateTime(date('Y-m-d', $requestDate)), $IPAddress, $token, $uuid, $status, $notes);
+    $application = new Application(intval($id), $user, $address, $outputInKWP, new \DateTime(date('Y-m-d', $constructionDate)), $PVType, new \DateTime(date('Y-m-d', $requestDate)), $IPAddress, $token, $uuid, $status, $notes);
     self::close($res);
     self::closeConnection($con);
     return $application;
@@ -425,6 +425,22 @@ class DataManager implements IDataManager {
     self::close($res);
     self::closeConnection($con);
     return $admin;
+  }
+
+  /**
+   * Loging
+   * 
+   * @param string $ipAddress
+   * @param string $action
+   * @param string $userId
+   */
+  public static function log($ipAddress, $action, $userId) {
+    $con = self::getConnection();
+    $res = self::query($con, "
+      INSERT INTO log (IPAddress, action, userId, timestamp) VALUES (?, ?, ?, NOW());
+      ", [$ipAddress, $action, $userId]);
+    self::close($res);
+    self::closeConnection($con);
   }
 
 }
