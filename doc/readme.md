@@ -161,7 +161,9 @@ The text-based log is represented in the db, but not in the program class struct
 
 Major functionality tests were already covered in the preceeding Architecture discussion, so I will focus on pen-testing here.
 
-...
+Trying to list applications (by direct link) as non-admin: Redirects to homepage.
+
+
 
 Finally, a log representation, where the logging feature was added at all the sensible junctions.
 
