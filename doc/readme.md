@@ -72,7 +72,7 @@ Rejected Case including note and db representation:
 
 ![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/5ec6d4e8-db98-4a8c-88c8-54f957cfad9c)
 
-..
+![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/823b6bc1-d486-4763-a4a7-a51127a52f98)
 
 The user is more limited in their options.
 
