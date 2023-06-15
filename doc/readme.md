@@ -149,7 +149,7 @@ As specified, token- and UUID distribution are not implemented here. A simple se
 
 ## DB-Structure (UML)
 
-The basic structure reflected in the classes for this project is User for applicants, Admin for application reviewers, Application for applications, Log for logs.
+The basic structure reflected in the classes for this project is User for applicants, Admin for application reviewers, Application for applications.
 
 ![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/89cfb80e-42c6-419c-80ec-15f520dfe58d)
 
