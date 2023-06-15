@@ -165,4 +165,4 @@ Major functionality tests were already covered in the preceeding Architecture di
 
 Finally, a log representation, where the logging feature was added at all the sensible junctions.
 
-...
+![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/448c2dc3-e466-4718-94a8-c8cbf2d5853c)
