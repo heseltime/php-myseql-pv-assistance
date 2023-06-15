@@ -435,6 +435,7 @@ class DataManager implements IDataManager {
    * @param string $userId
    */
   public static function log($ipAddress, $action, $userId) {
+    $userId = $userId == null ? 0 : $userId;
     $con = self::getConnection();
     $res = self::query($con, "
       INSERT INTO log (IPAddress, action, userId, timestamp) VALUES (?, ?, ?, NOW());

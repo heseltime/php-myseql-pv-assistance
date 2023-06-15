@@ -228,9 +228,12 @@ class Controller {
 
         if($application == null) {
           $errors[] = "Application not found, please check your ID and token";
-          \Data\DataManager::log($_SERVER['REMOTE_ADDR'], 'application not found error', $_SESSION['user']);
-        } else {
+          \Data\DataManager::log($_SERVER['REMOTE_ADDR'], 'application not found error', null);
+        } else if ($application != null && $uuid == $application->getUuid() && $token == $application->getToken()) {
           $_SESSION['application'] = $application;
+        } else {
+          $errors[] = "There was a UUID and token mismatch, please check your token";
+          \Data\DataManager::log($_SERVER['REMOTE_ADDR'], 'application token-uuid mismatch error', null);
         }
 
         $_SESSION['errors'] = $errors;
