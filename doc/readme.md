@@ -167,7 +167,7 @@ Trying to list applications (by direct link) as non-admin: Redirects to homepage
 
 Accessing an application without valid UUID has been tested. Valid UUID, but wrong token:
 
-
+![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/9b824dc2-bd72-4fbc-8c39-5815cabc6f82)
 
 Finally, a log representation, where the logging feature was added at all the sensible junctions.
 
