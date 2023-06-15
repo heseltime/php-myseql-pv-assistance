@@ -60,7 +60,7 @@ Admin processing:
 
 List view:
 
-...
+![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/5ddc6087-85a9-46bc-90ea-9d71c7e5dad4)
 
 A click on the edit button links to checkStatus tailored to admins, allowing for token processing and similar. The other side of the same view will be the user side.
 
