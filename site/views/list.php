@@ -2,6 +2,11 @@
 
 use Data\DataManager;
 use PVAssistance\Util;
+use PVAssistance\AuthenticationManager;
+
+if (!AuthenticationManager::isAuthenticated()) {
+  Util::redirect('index.php?');
+}
 
 $applications = DataManager::getApplications();
 
@@ -15,7 +20,7 @@ require_once('views/partials/header.php');
 <?php if (isset($applications)) : ?>
   <?php
   if (sizeof($applications) > 0) : 
-    require('views/partials/booklist.php');?>
+    require('views/partials/applist.php');?>
   <?php else : ?>
     <div class="alert alert-info" role="alert">No unprocessed applicatios.</div>
   <?php endif; ?>

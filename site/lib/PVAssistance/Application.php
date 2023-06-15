@@ -6,7 +6,6 @@ use \DateTime;
 
 class Application extends Entity {
 
-  private string $id;
   private User $user;
   private string $address;
   private DateTime $constructionDate;
@@ -19,7 +18,7 @@ class Application extends Entity {
   private string $status;
   private string $notes;
  
-  public function __construct(string $id,
+  public function __construct(int $id,
                               User $user,
                               string $address,
                               float $outputInKWP,
@@ -31,7 +30,7 @@ class Application extends Entity {
                               string $uuid,
                               string $status,
                               string $notes) {
-    $this->id = $id;
+    
     $this->user = $user;
     $this->address = $address;
     $this->outputInKWP = $outputInKWP;
@@ -43,11 +42,10 @@ class Application extends Entity {
     $this->uuid = $uuid;
     $this->status = $status;
     $this->notes = $notes;
+
+    parent::__construct($id);
   }
 
-  public function getCountingNumber(): string {
-    return $this->countingNumber;
-}
 
 public function getUser(): User {
     return $this->user;
@@ -73,8 +71,8 @@ public function getRequestDate(): DateTime {
     return $this->requestDate;
 }
 
-public function getIP(): string {
-    return $this->ip;
+public function getIPAddress(): string {
+    return $this->ipAddress;
 }
 
 public function getToken(): string {

@@ -267,7 +267,29 @@ class DataManager implements IDataManager {
       WHERE uuid = ? AND token = ?;
       ", [$uuid, $token]);
     if ($a = self::fetchObject($res)) {
-      $application = new Application($a->id, self::getUserByUserId($a->userId), $a->address, $a->outputInKWP, new \DateTime($a->constructionDate), $a->PVType, new \DateTime($a->requestDate), $a->IPAddress, $a->token, $a->uuid, $a->status, $a->notes);
+      $application = new Application(intval($a->id), self::getUserByUserId($a->userId), $a->address, $a->outputInKWP, new \DateTime($a->constructionDate), $a->PVType, new \DateTime($a->requestDate), $a->IPAddress, $a->token, $a->uuid, $a->status, $a->notes);
+    }
+    self::close($res);
+    self::closeConnection($con);
+    return $application;
+  }
+
+  /**
+   * get application by id only
+   * 
+   * @param int $id
+   * @return Application | false
+   */
+  public static function getApplicationById($id) : ?Application {
+    $application = null;
+    $con = self::getConnection();
+    $res = self::query($con, "
+      SELECT id, userId, address, outputInKWP, constructionDate, PVType, requestDate, IPAddress, token, uuid, status, notes
+      FROM application
+      WHERE id = ?;
+      ", [$id]);
+    if ($a = self::fetchObject($res)) {
+      $application = new Application(intval($a->id), self::getUserByUserId($a->userId), $a->address, $a->outputInKWP, new \DateTime($a->constructionDate), $a->PVType, new \DateTime($a->requestDate), $a->IPAddress, $a->token, $a->uuid, $a->status, $a->notes);
     }
     self::close($res);
     self::closeConnection($con);
@@ -289,7 +311,30 @@ class DataManager implements IDataManager {
       FROM application;
       ", []);
     while ($a = self::fetchObject($res)) {
-      $applications[] = new Application($a->id, self::getUserByUserId($a->userId), $a->address, $a->outputInKWP, new \DateTime($a->constructionDate), $a->PVType, new \DateTime($a->requestDate), $a->IPAddress, $a->token, $a->uuid, $a->status, $a->notes == null ? "" : $a->notes);
+      $applications[] = new Application(intval($a->id), self::getUserByUserId($a->userId), $a->address, $a->outputInKWP, new \DateTime($a->constructionDate), $a->PVType, new \DateTime($a->requestDate), $a->IPAddress, $a->token, $a->uuid, $a->status, $a->notes == null ? "" : $a->notes);
+    }
+    self::close($res);
+    self::closeConnection($con);
+    return $applications;
+  }
+
+  /**
+   * get all applications from specified start to end index
+   *
+   * @param int $start
+   * @param int $offset
+   * 
+   * @return array of Application-items
+   */
+  public static function getApplicationsDelimited(int $start, int $offset)  : array {
+    $applications = [];
+    $con = self::getConnection();
+    $res = self::query($con, "
+      SELECT id, userId, address, outputInKWP, constructionDate, PVType, requestDate, IPAddress, token, uuid, status, notes
+      FROM application LIMIT ?, ?;
+      ", [$start, $offset]);
+    while ($a = self::fetchObject($res)) {
+      $applications[] = new Application(intval($a->id), self::getUserByUserId($a->userId), $a->address, $a->outputInKWP, new \DateTime($a->constructionDate), $a->PVType, new \DateTime($a->requestDate), $a->IPAddress, $a->token, $a->uuid, $a->status, $a->notes == null ? "" : $a->notes);
     }
     self::close($res);
     self::closeConnection($con);
@@ -316,6 +361,26 @@ class DataManager implements IDataManager {
     self::close($res);
     self::closeConnection($con);
     return $count;
+  }
+
+  /**
+   * process application
+   * 
+   * @param int $id
+   * @param string $status
+   * @param string $notes
+   * 
+   * @return Application
+   */
+  public static function processApplication($uuid, $token, $status, $notes) {
+    $con = self::getConnection();
+    $res = self::query($con, "
+      UPDATE application SET status = ?, notes = ? WHERE uuid = ? AND token = ?;
+      ", [$status, $notes, $uuid, $token]);
+    $application = self::getApplicationByUUIDAndToken($uuid, $token);
+    self::close($res);
+    self::closeConnection($con);
+    return $application;
   }
 
   /**

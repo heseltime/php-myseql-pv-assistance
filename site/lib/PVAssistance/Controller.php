@@ -36,7 +36,7 @@ class Controller {
   public const USER_PASSWORD = 'password';
   public const APPLY = 'newApplication';
   public const CHECK_STATUS = 'checkStatus';
-  public const ACTION_HANDLE_REQUEST = 'handleRequest';
+  public const PROCESS_APPLICATION = 'processApplication';
 
   private static $instance = false;
 
@@ -237,6 +237,21 @@ class Controller {
         $_SESSION['errors'] = $errors;
 
         Util::redirect('index.php?view=checkStatus' . $requestUrl);
+        break;
+
+      case self::PROCESS_APPLICATION :
+        $status = $_POST['status'];
+        $notes = $_POST['notes'];
+
+        $id = $_POST['id'];
+        $uuid = $_POST['uuid'];
+        $token = $_POST['token'];
+
+        $app = \Data\DataManager::processApplication($uuid, $token, $status, $notes);
+
+        // log ...
+
+        Util::redirect('index.php?view=list');
         break;
 
       case self::ACTION_LOGIN :

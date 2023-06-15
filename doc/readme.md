@@ -54,11 +54,19 @@ Admin log-in:
 
 ...
 
-Header partial and login actions in the controloer/DataManager implement the login functionality for admins. In the logged in state admins have an additional header link that allows them to access the forms for processing. (Admin sign up is out of scope, see existing admin database entries.)
+Header partial and login actions in the controller/DataManager implement the login functionality for admins. In the logged in state admins have an additional header link that allows them to access the forms for processing. (Admin sign up is out of scope, see existing admin database entries.)
 
 Admin processing:
 
+List view:
+
 ...
+
+A click on the edit button links to checkStatus tailored to admins, allowing for token processing and similar. The other side of the same view will be the user side.
+
+...
+
+The user is more limited in their options.
 
 Application display once processed (with result):
 

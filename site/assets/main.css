@@ -44,3 +44,7 @@ body {
 .page-header > h2 {
   color: #eee;
 }
+
+td {
+  color: #fff;
+}

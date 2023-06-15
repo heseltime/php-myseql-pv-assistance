@@ -2,15 +2,6 @@
 
 namespace PVAssistance;
 
-/**
- * User
- * 
- * 
- * @extends Entity
- * @package    
- * @subpackage 
- * @author     John Doe <jd@fbi.gov>
- */
 class User extends Entity {
 
   private string $userName;
