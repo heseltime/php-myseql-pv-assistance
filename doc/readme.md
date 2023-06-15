@@ -1,5 +1,7 @@
 # SCR4 PV-Assistance Project, Jack Heseltine
 
+This document can also be found at https://github.com/heseltime/php-myseql-pv-assistance/blob/main/doc/readme.md
+
 ![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/ae0379f5-cce3-43df-af7d-840b12b29282)
 
 Based on php-mysql-bookstore-dev-8 sample project, FHOOe/Hagenberg SCR4 2023.
