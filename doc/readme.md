@@ -52,7 +52,9 @@ Everything is also tracked per user and application, especially, including IP ad
 
 Admin log-in:
 
-...
+![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/5e44370b-1cad-47ef-91cd-6360c8bc5da3)
+
+After login an additional header section is available to admins.
 
 Header partial and login actions in the controller/DataManager implement the login functionality for admins. In the logged in state admins have an additional header link that allows them to access the forms for processing. (Admin sign up is out of scope, see existing admin database entries.)
 
