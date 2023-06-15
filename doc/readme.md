@@ -155,4 +155,10 @@ The basic structure reflected in the classes for this project is User for applic
 
 ## Test Cases
 
-Some major tests were already covered in the 
+Major functionality tests were already covered in the preceeding Architecture discussion, so I will focus on pen-testing here.
+
+...
+
+Finally, a log representation, where the logging feature was added at all the sensible junctions.
+
+...
