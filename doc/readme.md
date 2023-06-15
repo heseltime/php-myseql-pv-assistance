@@ -64,6 +64,12 @@ List view:
 
 A click on the edit button links to checkStatus tailored to admins, allowing for token processing and similar. The other side of the same view will be the user side.
 
+Approved case:
+
+![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/36aa6fa2-2e83-4fe6-8cb2-cf22b7594a35)
+
+Rejected Case including note and db representation:
+
 ...
 
 The user is more limited in their options.
