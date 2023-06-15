@@ -163,6 +163,10 @@ Major functionality tests were already covered in the preceeding Architecture di
 
 Trying to list applications (by direct link) as non-admin: Redirects to homepage.
 
+![image](https://github.com/heseltime/php-myseql-pv-assistance/assets/66922223/97448d34-16b5-4d7e-a0b6-fcf521f64b01)
+
+Accessing an application without valid UUID has been tested. Valid UUID, but wrong token:
+
 
 
 Finally, a log representation, where the logging feature was added at all the sensible junctions.
